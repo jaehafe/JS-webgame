@@ -10,7 +10,7 @@ $input.focus();
 
 const onClickButton = () => {
   // 제시어가 비어있는가?
-  if (!word) {
+  if (!word || word[word.length - 1] === newWord[0]) {
     // 비어있다
     word = newWord; // 입력한 단어가 제시어가 된다
     $word.textContent = word;
@@ -22,31 +22,12 @@ const onClickButton = () => {
     } else {
       $order.textContent = order + 1;
     }
-    $input.value = '';
-    $input.focus();
   } else {
-    // 비어있지 않다
-    // 입력한 단어가 올바른가? => 이미 입력한 단어의 끝 글자 === 입력한 단어의 첫 글자
-    if (word[word.length - 1] === newWord[0]) {
-      // 올바른가
-      word = newWord; // 입력한 단어가 제시어가 된다
-      $word.textContent = word;
-      // 다음 사람에게 순서를 넘긴다
-      const order = Number($order.textContent);
-      // 현재 순서에서
-      if (order + 1 > number) {
-        $order.textContent = 1;
-      } else {
-        $order.textContent = order + 1;
-      }
-      $input.value = '';
-      $input.focus();
-    } else {
-      // 올바르지 않다
-      alert('올바르지 않은 단어입니다.');
-      $input.focus();
-    }
+    // 올바르지 않다
+    alert('올바르지 않은 단어입니다.');
   }
+  $input.value = '';
+  $input.focus();
 };
 
 const onInput = (e) => {
@@ -57,10 +38,11 @@ const onInput = (e) => {
 $input.addEventListener('input', onInput);
 $button.addEventListener('click', onClickButton);
 
-// $input.addEventListener('keypress', (e) => {
-//   newWord = e.target.value;
+$input.addEventListener('keypress', (e) => {
+  // newWord = e.target.value;
 
-//   if (e.key === 'Enter') {
-//     e.preventDefault();
-//   }
-// });
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    $button.click();
+  }
+});
