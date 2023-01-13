@@ -59,69 +59,33 @@ document
 document
   .querySelector('#multiply')
   .addEventListener('click', onClickOperator('*'));
-// document.querySelector('#calculate').addEventListener('click', () => {
-//   if (numTwo) {
-//     switch (operator) {
-//       case '+':
-//         $result.value = parseInt(numOne) + parseInt(numTwo);
-//         break;
-//       case '-':
-//         $result.value = numOne - numTwo;
-//         break;
-//       case '*':
-//         $result.value = numOne * numTwo;
-//         break;
-//       case '/':
-//         $result.value = numOne / numTwo;
-//         break;
-//       default:
-//         break;
-//     }
-//   } else {
-//     alert('숫자를 먼저 입력하세요');
-//   }
-// });
 document.querySelector('#calculate').addEventListener('click', () => {
   if (numTwo) {
-    if (operator === '+') {
-      return ($result.value = parseInt(numOne) + parseInt(numTwo));
-    } else if (operator === '-') {
-      return ($result.value = numOne - numTwo);
-    } else if (operator === '*') {
-      return ($result.value = numOne * numTwo);
-    } else if (operator === '/') {
-      return ($result.value = numOne / numTwo);
-    } else {
-      return;
+    switch (operator) {
+      case '+':
+        $result.value = parseInt(numOne) + parseInt(numTwo);
+        break;
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
     }
   } else {
     alert('숫자를 먼저 입력하세요');
   }
-  //   switch (operator) {
-  //     // case '+':
-  //     //   $result.value = parseInt(numOne) + parseInt(numTwo);
-  //     //   break;
-  //     case '-':
-  //       $result.value = numOne - numTwo;
-  //       break;
-  //     case '*':
-  //       $result.value = numOne * numTwo;
-  //       break;
-  //     case '/':
-  //       $result.value = numOne / numTwo;
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // } else {
-  //   alert('숫자를 먼저 입력하세요');
-  // }
 });
 
 document.querySelector('#clear').addEventListener('click', () => {
   numOne = '';
-  numTwo = '';
   operator = '';
+  numTwo = '';
   $result.value = '';
   $operator.value = '';
 });
@@ -160,3 +124,5 @@ document.querySelector('#clear').addEventListener('click', () => {
 // 분기점에서 짧은 절차부터 실행하게 if문을 작성한다.
 // 짧은 절차가 끝나면 return(함수 내부의 경우)이나 break(for문 내부의 경우)로 중단한다.
 // else를 제거한다(이때 중첩 하나가 제거된다).
+
+console.log([1, 0].join(''));
