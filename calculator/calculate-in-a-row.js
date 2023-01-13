@@ -18,6 +18,26 @@ const onClickNumber = (e) => {
 };
 
 const onClickOperator = (op) => () => {
+  if (numTwo) {
+    switch (operator) {
+      case '+':
+        $result.value = parseInt(numOne) + parseInt(numTwo);
+        break;
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
+    }
+    numOne = $result.value;
+    numTwo = '';
+  }
   if (numOne) {
     operator = op;
     $operator.value = op;
