@@ -26,6 +26,36 @@ const winBalls = shuffle.slice(0, 6).sort((a, b) => {
 const bonus = shuffle[6];
 console.log(winBalls, bonus);
 
+const $result = document.querySelector('#result');
+const $bonus = document.querySelector('#bonus');
+
+const showBall = (number, $target) => {
+  setTimeout(() => {
+    const $ball = document.createElement('div');
+    $ball.className = 'ball';
+    $ball.textContent = number;
+    $target.appendChild($ball);
+  }, 1000);
+};
+// for (let i = 0; i < winBalls.length; i++) {
+//   setTimeout(() => {
+//     showBall(winBalls[i], $result);
+//   }, (i + 1) * 1000);
+// }
+
+// for -> map
+Array(winBalls.length)
+  .fill()
+  .map((ele, i) =>
+    setTimeout(() => {
+      showBall(winBalls[i], $result);
+    }, (i + 1) * 1000)
+  );
+
+setTimeout(() => {
+  showBall(bonus, $bonus);
+}, 7000);
+
 /** while -> for문
 for (let i = candidate.length; i > 0; i--) {
   const random = Math.floor(Math.random() * i);
