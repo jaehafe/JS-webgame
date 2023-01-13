@@ -19,6 +19,12 @@ while (candidate.length > 0) {
   shuffle.push(value);
 }
 console.log(shuffle);
+// 오름차순 정렬
+const winBalls = shuffle.slice(0, 6).sort((a, b) => {
+  return a - b;
+});
+const bonus = shuffle[6];
+console.log(winBalls, bonus);
 
 /** while -> for문
 for (let i = candidate.length; i > 0; i--) {
