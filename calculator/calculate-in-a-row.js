@@ -46,49 +46,35 @@ document
 document
   .querySelector('#multiply')
   .addEventListener('click', onClickOperator('*'));
-// document.querySelector('#calculate').addEventListener('click', () => {
-//   if (numTwo) {
-//     switch (operator) {
-//       case '+':
-//         $result.value = parseInt(numOne) + parseInt(numTwo);
-//         break;
-//       case '-':
-//         $result.value = numOne - numTwo;
-//         break;
-//       case '*':
-//         $result.value = numOne * numTwo;
-//         break;
-//       case '/':
-//         $result.value = numOne / numTwo;
-//         break;
-//       default:
-//         break;
-//     }
-//   } else {
-//     alert('숫자를 먼저 입력하세요');
-//   }
-// });
 document.querySelector('#calculate').addEventListener('click', () => {
   if (numTwo) {
-    if (operator === '+') {
-      return ($result.value = parseInt(numOne) + parseInt(numTwo));
-    } else if (operator === '-') {
-      return ($result.value = numOne - numTwo);
-    } else if (operator === '*') {
-      return ($result.value = numOne * numTwo);
-    } else if (operator === '/') {
-      return ($result.value = numOne / numTwo);
-    } else {
-      $operator.value = '';
-      numOne = $result.value;
-      operator = '';
-      numTwo = '';
+    switch (operator) {
+      case '+':
+        $result.value = parseInt(numOne) + parseInt(numTwo);
+        break;
+      case '-':
+        $result.value = numOne - numTwo;
+        break;
+      case '*':
+        $result.value = numOne * numTwo;
+        break;
+      case '/':
+        $result.value = numOne / numTwo;
+        break;
+      default:
+        break;
     }
+    // 연속 계산을 위한 로직 추가
+    $operator.value = '';
+    numOne = $result.value;
+    operator = '';
+    numTwo = '';
   } else {
     alert('숫자를 먼저 입력하세요');
   }
 });
 
+// clear
 document.querySelector('#clear').addEventListener('click', () => {
   numOne = '';
   numTwo = '';
