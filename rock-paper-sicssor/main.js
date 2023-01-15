@@ -49,10 +49,44 @@ let intervalId = setInterval(changeComputerHand, 50);
 
 // 버그수정 두번째 방법
 let clickable = true;
-const clickButton = () => {
+const clickButton = (e) => {
   if (clickable) {
     clearInterval(intervalId);
     clickable = false;
+
+    // 점수 계산 및 화면 표시
+    const myChoice =
+      e.target.textContent === '바위'
+        ? 'rock'
+        : e.target.textContent === '가위'
+        ? 'scissors'
+        : 'paper';
+
+    if (myChoice === 'rock') {
+      if (computerChoice === 'rock') {
+        console.log('무승부');
+      } else if (computerChoice === 'scissors') {
+        console.log('승리');
+      } else if (computerChoice === 'paper') {
+        console.log('패배');
+      }
+    } else if (myChoice === 'scissors') {
+      if (computerChoice === 'rock') {
+        console.log('패배');
+      } else if (computerChoice === 'scissors') {
+        console.log('무승부');
+      } else if (computerChoice === 'paper') {
+        console.log('승리');
+      }
+    } else if (myChoice === 'paper') {
+      if (computerChoice === 'rock') {
+        console.log('승리');
+      } else if (computerChoice === 'scissors') {
+        console.log('패배');
+      } else if (computerChoice === 'paper') {
+        console.log('무승부');
+      }
+    }
 
     setTimeout(() => {
       clickable = true;
