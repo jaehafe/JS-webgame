@@ -27,25 +27,15 @@ const changeComputerHand = () => {
   }
   $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
   $computer.style.backgroundSize = 'auto 200px';
-  console.log('rock');
 };
 
 let intervalId = setInterval(changeComputerHand, 50);
 
-// 버그수정 첫번째 방법
-// const clickButton = () => {
-//   clearInterval(intervalId);
-//   $rock.removeEventListener('click', clickButton);
-//   $scissors.removeEventListener('click', clickButton);
-//   $paper.removeEventListener('click', clickButton);
-
-//   setTimeout(() => {
-//     intervalId = setInterval(changeComputerHand, 50);
-//     $rock.addEventListener('click', clickButton);
-//     $scissors.addEventListener('click', clickButton);
-//     $paper.addEventListener('click', clickButton);
-//   }, 1000);
-// };
+const scoreTable = {
+  rock: 0,
+  scissors: 1,
+  paper: -1,
+};
 
 // 버그수정 두번째 방법
 let clickable = true;
@@ -62,30 +52,18 @@ const clickButton = (e) => {
         ? 'scissors'
         : 'paper';
 
-    if (myChoice === 'rock') {
-      if (computerChoice === 'rock') {
-        console.log('무승부');
-      } else if (computerChoice === 'scissors') {
-        console.log('승리');
-      } else if (computerChoice === 'paper') {
-        console.log('패배');
-      }
-    } else if (myChoice === 'scissors') {
-      if (computerChoice === 'rock') {
-        console.log('패배');
-      } else if (computerChoice === 'scissors') {
-        console.log('무승부');
-      } else if (computerChoice === 'paper') {
-        console.log('승리');
-      }
-    } else if (myChoice === 'paper') {
-      if (computerChoice === 'rock') {
-        console.log('승리');
-      } else if (computerChoice === 'scissors') {
-        console.log('패배');
-      } else if (computerChoice === 'paper') {
-        console.log('무승부');
-      }
+    const myScore = scoreTable[myChoice];
+    const computerScore = scoreTable[computerChoice];
+    const diff = myScore - computerScore;
+
+    // (diff === 2 || diff === -1) 또는 [2, -1].includes(diff)
+    // 2, -1 승리조건 | -2, 1 패배조건, scoreTable 참고
+    if ([2, -1].includes(diff)) {
+      console.log('승리');
+    } else if ([-2, 1].includes(diff)) {
+      console.log('패배');
+    } else if ([0].includes(diff)) {
+      console.log('무승부');
     }
 
     setTimeout(() => {
@@ -98,3 +76,22 @@ const clickButton = (e) => {
 $rock.addEventListener('click', clickButton);
 $scissors.addEventListener('click', clickButton);
 $paper.addEventListener('click', clickButton);
+
+// 버그수정 첫번째 방법
+// const clickButton = () => {
+//   clearInterval(intervalId);
+//   $rock.removeEventListener('click', clickButton);
+//   $scissors.removeEventListener('click', clickButton);
+//   $paper.removeEventListener('click', clickButton);
+
+//   setTimeout(() => {
+//     intervalId = setInterval(changeComputerHand, 50);
+//     $rock.addEventListener('click', clickButton);
+//     $scissors.addEventListener('click', clickButton);
+//     $paper.addEventListener('click', clickButton);
+//   }, 1000);
+// };
+
+// $rock.addEventListener('click', clickButton);
+// $scissors.addEventListener('click', clickButton);
+// $paper.addEventListener('click', clickButton);
