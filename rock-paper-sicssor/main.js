@@ -39,6 +39,7 @@ const scoreTable = {
 
 // 버그수정 두번째 방법
 let clickable = true;
+let score = 0;
 const clickButton = (e) => {
   if (clickable) {
     clearInterval(intervalId);
@@ -55,16 +56,20 @@ const clickButton = (e) => {
     const myScore = scoreTable[myChoice];
     const computerScore = scoreTable[computerChoice];
     const diff = myScore - computerScore;
+    let message = '';
 
     // (diff === 2 || diff === -1) 또는 [2, -1].includes(diff)
     // 2, -1 승리조건 | -2, 1 패배조건, scoreTable 참고
     if ([2, -1].includes(diff)) {
-      console.log('승리');
+      score += 1;
+      message = '승리';
     } else if ([-2, 1].includes(diff)) {
-      console.log('패배');
+      score -= 1;
+      message = '패배';
     } else if ([0].includes(diff)) {
-      console.log('무승부');
+      message = '무승부';
     }
+    $score.textContent = `${message} 총: ${score}점`;
 
     setTimeout(() => {
       clickable = true;
