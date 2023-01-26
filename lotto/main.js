@@ -18,7 +18,9 @@ while (candidate.length > 0) {
   // shuffle 배열에 넣기
   shuffle.push(value);
 }
+
 console.log(shuffle);
+
 // 오름차순 정렬 // slice를 붙이면 원본을 안 바꿀 수 있다.
 const winBalls = shuffle.slice(0, 6).sort((a, b) => {
   return a - b;
